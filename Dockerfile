@@ -36,7 +36,7 @@ RUN apt-get -qq update && apt-get -qq -y install curl bzip2 \
 ENV PATH /opt/conda/bin:$PATH
 RUN conda config --append channels conda-forge
 RUN conda config --append channels bioconda
-RUN conda install mamba -n base -c conda-forge -y
+RUN conda install mamba pip -n base -c conda-forge -y
 
 
 
