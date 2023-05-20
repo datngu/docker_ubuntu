@@ -17,8 +17,7 @@ RUN apt-get update && apt-get install -y \
     samtools \
     bedtools \
     bcftools \
-    bwa \
-    python-pysam
+    bwa 
 
 
 RUN apt-get -qq update && apt-get -qq -y install curl bzip2 \
