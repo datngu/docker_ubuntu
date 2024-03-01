@@ -38,6 +38,19 @@ RUN conda config --append channels bioconda
 RUN conda install mamba pip -n base -c conda-forge -y
 
 
+## install commom python packages
+RUN pip install numpy pandas pysam scikit-learn
+
+## install GLIMSE
+RUN mkdir /biotools
+RUN wget https://github.com/odelaneau/GLIMPSE/releases/download/v2.0.0/GLIMPSE2_chunk_static -O /biotools
+RUN wget https://github.com/odelaneau/GLIMPSE/releases/download/v2.0.0/GLIMPSE2_ligate_static -O /biotools
+RUN wget https://github.com/odelaneau/GLIMPSE/releases/download/v2.0.0/GLIMPSE2_phase_static -O /biotools
+RUN wget https://github.com/odelaneau/GLIMPSE/releases/download/v2.0.0/GLIMPSE2_split_reference_static-O /biotools
+RUN wget https://github.com/odelaneau/GLIMPSE/releases/download/v2.0.0/GLIMPSE2_concordance_static -O /biotools
+
+ENV PATH /biotools:$PATH
+
 
 # RUN mamba install -n base numpy==1.23.2 pandas==2.0.1 pysam samtools bedtools pip -y
 
