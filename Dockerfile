@@ -66,6 +66,14 @@ RUN wget https://github.com/odelaneau/GLIMPSE/releases/download/v2.0.0/GLIMPSE2_
 RUN wget https://github.com/odelaneau/GLIMPSE/releases/download/v2.0.0/GLIMPSE2_phase_static -P /biotools
 RUN wget https://github.com/odelaneau/GLIMPSE/releases/download/v2.0.0/GLIMPSE2_split_reference_static -P /biotools
 RUN wget https://github.com/odelaneau/GLIMPSE/releases/download/v2.0.0/GLIMPSE2_concordance_static -P /biotools
+
+RUN wget https://github.com/broadinstitute/picard/releases/download/2.26.2/picard.jar -P /biotools/
+
+# Download GATK
+RUN wget https://github.com/broadinstitute/gatk/releases/download/4.2.4.0/gatk-4.2.4.0.zip && \
+    unzip gatk-4.2.4.0.zip && \
+    mv gatk-4.2.4.0/* /biotools/
+
 RUN chmod +x /biotools/*
 
 ENV PATH /biotools:$PATH
