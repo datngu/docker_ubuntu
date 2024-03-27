@@ -32,6 +32,23 @@ RUN apt-get -qq update && apt-get -qq -y install curl bzip2 \
     && rm -rf /var/lib/apt/lists/* /var/log/dpkg.log \
     && conda clean --all --yes
 
+## install java
+RUN apt-get update && apt-get upgrade -y && apt-get install -y \
+    openjdk-17-jdk \
+    && apt-get clean
+
+# Download Picard tools
+RUN wget https://github.com/broadinstitute/picard/releases/download/2.26.2/picard.jar -P /usr/local/bin/
+
+# Download GATK
+RUN wget https://github.com/broadinstitute/gatk/releases/download/4.2.4.0/gatk-4.2.4.0.zip && \
+    unzip gatk-4.2.4.0.zip && \
+    mv gatk-4.2.4.0 /usr/local/bin/gatk
+
+# Set the default command to run Picard
+CMD ["java", "-jar", "/usr/local/bin/picard.jar"]
+
+
 ENV PATH /opt/conda/bin:$PATH
 RUN conda config --append channels conda-forge
 RUN conda config --append channels bioconda
