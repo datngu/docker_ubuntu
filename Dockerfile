@@ -35,6 +35,7 @@ RUN apt-get -qq update && apt-get -qq -y install curl bzip2 \
 ## install java
 RUN apt-get update && apt-get upgrade -y && apt-get install -y \
     openjdk-17-jdk \
+    unzip \
     && apt-get clean
 
 # Download Picard tools
